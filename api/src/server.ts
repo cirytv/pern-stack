@@ -1,21 +1,27 @@
-import express from 'express';
-import router from './router';
-import db from './config/db';
-import colors from 'colors';
+import express from 'express'
+import colors from 'colors'
+import router from './router.ts'
+import db from './config/db.ts'
 
-// db connection
+// Conectar a base de datos
 async function connectDB() {
   try {
-    await db.authenticate();
-    db.sync();
-    console.log(colors.magenta('successful database connection'));
+    await db.authenticate()
+    db.sync()
+    console.log(colors.blue('successful database connection'))
   } catch (error) {
-    console.log(colors.red.bold('error in the data base connection...'));
+    // console.log(error)
+    console.log(colors.red.bold('error in the data base connection...'))
   }
 }
-connectDB();
+connectDB()
 
-const server = express();
-server.use('/api/products', router);
+// Instancia de express
+const server = express()
 
-export default server;
+// Leer datos de formularios
+server.use(express.json()) // habilita lectura de json
+
+server.use('/api/afiliacion', router)
+
+export default server

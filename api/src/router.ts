@@ -1,20 +1,9 @@
-import { Router } from 'express';
+import { Router } from 'express'
+import { createAffiliate } from './handlers/affiliate.ts'
 
-const router = Router();
+const router = Router()
 // routing
-router.get('/', (req, res) => {
-  res.send('get');
-});
-router.post('/', (req, res) => {
-  res.send('post');
-});
-router.put('/', (req, res) => {
-  res.send('put');
-});
-router.patch('/', (req, res) => {
-  res.send('patch');
-});
-router.delete('/', (req, res) => {
-  res.send('delete');
-});
-export default router;
+
+router.post('/', createAffiliate)
+
+export default router
